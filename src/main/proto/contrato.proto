@@ -1,0 +1,52 @@
+syntax = "proto3";
+package proto;
+
+option java_multiple_files = true;  // Cada rpc em um arquivo de classe diferente!
+option java_package = "generated";
+option java_outer_classname = "UserProtos"; // Nome da classe que conterá as definições das mensagens
+
+
+// /////////--*SERVICO 1*--///////// //
+
+// Definição do serviço de operação para teste de 8 longs
+service MathService{
+
+  rpc somaLongs(long_request) returns (long_responseSoma);
+
+  rpc raizQuadrada(long_request) returns (long_responseMaior);
+}
+
+// Mensagem recebida para operacao de 1 long e 8 longs
+message long_request {
+  repeated int64 input = 1;
+}
+
+
+
+// Resposta da primeira rpc
+message long_responseSoma{
+  int64 output = 1;
+}
+
+// Respota da segunda rpc
+message long_responseMaior{
+  int64 output = 1;
+}
+
+// /////////--*SERVICO 2*--///////// //
+
+service ServicoString{
+
+  rpc paraMaiusculo(string_request) returns(string_response);
+}
+
+message string_request{
+  string input = 1;
+}
+
+message string_response{
+  string output = 1;
+}
+
+
+
